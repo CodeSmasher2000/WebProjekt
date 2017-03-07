@@ -34,17 +34,23 @@
             <div class="input-field col s6">
               <select id="select-job">
                 <option value="" disabled selected>Välj ditt yrke</option>
-                <option value="1">Programmerare</option>
-                <option value="2">Dick Sucker</option>
-                <option value="3">Pattes Slave</option>
+                <option value="programmerare">Programmerare</option>
+                <option value="städare">Dick Sucker</option>
+                <option value="massör">Pattes Slave</option>
               </select>
             </div>
             <div class="input-field col s6">
-            <select>
+            <select id="select-lan">
               <option value="" disabled selected>Välj ditt område</option>
-              <option value="1">Skåne</option>
-              <option value="2">Blekinge</option>
-              <option value="3">Södermanland</option>
+              <option value="1">Stockholm</option>
+              <option value="10">Blekinge</option>
+              <option value="20">Dalarna</option>
+              <option value="21">Gävleborg</option>
+              <option value="13">Halland</option>
+              <option value="23">Jämtland</option>
+              <option value="6">Jönköping</option>
+              <option value="8">Kalmar</option>
+              <option value="12">Skåne</option>
             </select>
             </div>
             <button class="btn waves-effect waves-light" type="submit" name="action" id="submit-job">Submit
@@ -69,7 +75,7 @@
             <h2 class="center brown-text"><i class="material-icons">flash_on</i></h2>
             <h5 class="center">Speeds up development</h5>
             <div id="div-job">
-            <p class="light">We did most of the heavy lifting for you to provide a default stylings that incorporate our custom components. Additionally, we refined animations and transitions to provide a smoother experience for developers.</p>
+            <p class="light" id="job-p"></p>
             </div>
           </div>
         </div>
