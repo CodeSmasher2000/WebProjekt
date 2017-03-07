@@ -29,25 +29,33 @@
     <div class="section no-pad-bot">
       <div class="container">
         <br><br>
-        <h1 class="header center teal-text text-lighten-2">The Easy Way To Find A Job</h1>
+        <h1 class="header center teal-text text-lighten-2" id="startHeader">Det Enkla Sättet Att Hitta Drömjobbet!</h1>
         <div class="row center">
-          <h5 class="header col s12 light">Choose your profession</h5>
-        </div>
-        <div class="row center">
-            <div class="input-field col s12">
-              <select>
-                <option value="" disabled selected>Choose your option</option>
-                <option value="1">Programmer</option>
+            <div class="input-field col s6">
+              <select id="select-job">
+                <option value="" disabled selected>Välj ditt yrke</option>
+                <option value="1">Programmerare</option>
                 <option value="2">Dick Sucker</option>
                 <option value="3">Pattes Slave</option>
               </select>
             </div>
+            <div class="input-field col s6">
+            <select>
+              <option value="" disabled selected>Välj ditt område</option>
+              <option value="1">Skåne</option>
+              <option value="2">Blekinge</option>
+              <option value="3">Södermanland</option>
+            </select>
+            </div>
+            <button class="btn waves-effect waves-light" type="submit" name="action" id="submit-job">Submit
+                <i class="material-icons right">send</i>
+            </button>
         </div>
         <br><br>
 
       </div>
     </div>
-    <div class="parallax"><img src="background1.jpg" alt="Unsplashed background img 1"></div>
+    <div class="parallax"><img src="spacebackground.jpg" alt="Unsplashed background img 1"></div>
   </div>
 
 
@@ -60,8 +68,9 @@
           <div class="icon-block">
             <h2 class="center brown-text"><i class="material-icons">flash_on</i></h2>
             <h5 class="center">Speeds up development</h5>
-
+            <div id="div-job">
             <p class="light">We did most of the heavy lifting for you to provide a default stylings that incorporate our custom components. Additionally, we refined animations and transitions to provide a smoother experience for developers.</p>
+            </div>
           </div>
         </div>
 
@@ -166,6 +175,7 @@
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script src="js/materialize.js"></script>
   <script src="js/init.js"></script>
+  <script src="js/script.js"></script>
 
   </body>
 </html>
