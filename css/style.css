@@ -27,7 +27,7 @@ p {
 }
   .parallax-container .section {
     width: 100%;
-    min-height: 68vh;
+    min-height: 100vh;
   }
 
 #startHeader{
