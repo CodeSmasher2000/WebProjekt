@@ -11,7 +11,7 @@ $("#submit-job").on("click", function(){
   //$(movieDiv).text("Laddar...");
   
   $.ajax({
-    url: baseUrl + "?lanid=" + encodeURI(lanInput) + "&nyckelord=" + encodeURI(jobInput),
+    url: baseUrl + "?lanid=" + encodeURI(lanInput) + "&nyckelord=" + jobInput,
     dataType: "JSON"
     
   }).done(function(data){
