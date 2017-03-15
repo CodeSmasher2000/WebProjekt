@@ -1,6 +1,6 @@
  // $("#antal-jobb").text(sessionStorage.getItem("result"));
   $("#result").append('<h3>' + sessionStorage.getItem("result") + '</h3>')
-  
+
 var id = [10,20,9,13,23,6,8,7,25,12,1,4,3,17,24,22,19,14,18,5,];
 var lanArr = []; // namn på alla län.
 var jobArr= []; // antal jobb i län.
@@ -13,45 +13,35 @@ function allJobs(){
 
   for(var i =0;i<id.length;i++){
     $.ajax({
-    url: baseUrl + "?lanid=" + encodeURI(id[i]) + "&nyckelord=" + encodeURI(job),
-    dataType: "JSON"
-    
-  }).done(function(data){
-    var jobresult = data.matchningslista;
-    console.log(jobresult);
-   // console.log(jobresult.matchningdata);
-    var annons = jobresult.antal_platsannonser;
-    if(annons != 0){
-      jobArr[counter] = annons;
-      var lan = jobresult.matchningdata[0].lan;
-      lanArr[counter] = lan;
-      
-     // $("#result").append('<h6>' +"Län: " + lan + " Antal jobb: " + annons + '</h6>')
-      console.log(" län arr längd",lanArr[counter]);
-      counter++;
-      if(jobArr.length>3){
-        console.log("if-sats");
-        pieChart();
-      }
-   }
-    
-    
-    
-  
+            url: baseUrl + "?lanid=" + encodeURI(id[i]) + "&nyckelord=" + encodeURI(job),
+            dataType: "JSON"
+    }).done(function(data){
+            var jobresult = data.matchningslista;
+            console.log(jobresult);
+            // console.log(jobresult.matchningdata);
+            var annons = jobresult.antal_platsannonser;
+            if(annons != 0){
+              jobArr[counter] = annons;
+              var lan = jobresult.matchningdata[0].lan;
+              lanArr[counter] = lan;
 
-  }).fail(function(data){
-  //  $("#title").text("Något gick fel...");
-	//$("#title").show();
-    console.log(data);
-  });
- 
-    
+             // $("#result").append('<h6>' +"Län: " + lan + " Antal jobb: " + annons + '</h6>')
+              console.log(" län arr längd",lanArr[counter]);
+              counter++;
+              if(jobArr.length>3){
+                console.log("if-sats");
+                //pieChart();
+              }
+           }
+      }).fail(function(data){
+          //  $("#title").text("Något gick fel...");
+        	//$("#title").show();
+            console.log(data);
+      });
   }
-
-  
 }
 
-         
+
 /*
 
 function pieChart(){
@@ -81,12 +71,12 @@ var data = {
               "#8B0000",
               "#FFFF00",
               "#F0E68C",
-              "#454545" 
+              "#454545"
             ],
             hoverBackgroundColor: [
               "#FCFCFC"
             ]
-    
+
         }]
 };
 
@@ -119,5 +109,3 @@ var myPieChart = new Chart(ctx,{
       "#67C69D",
     ]
 });
-            
-
