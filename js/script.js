@@ -6,6 +6,7 @@ $('select').material_select();
 
 var donutResult = Morris.Donut({
         element: 'donut-result',
+        resize: true,
         data: [
           {label: "placeholder", value: 0}
         ],
@@ -93,8 +94,10 @@ $("#submit-job").on("click", function(){
         {label: lanArr[19], value: jobArr[19]},
         {label: lanArr[20], value: jobArr[20]}
     ]);
+    donutResult.redraw();
     $("#donut-result").fadeIn(2000);
     $("#result-section").fadeIn(2000);
+    donutResult.select(10); // Select skånes län
     });
 });
 

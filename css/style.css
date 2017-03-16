@@ -31,8 +31,8 @@ p {
   color: rgba(255,255,255,.9);
 }
 
-#result-section {
-    margin-top: 50px;
+.margin-top-section {
+    margin-top: 25px;
 }
 
 #startHeader{
