@@ -1,4 +1,5 @@
 /* Anropar API och hämtar resultat som matchar den inmatade strängen */
+$("#progress-bar").hide();
 $("#donut-result").hide();
 $("#result-section").hide();
 $('.parallax').parallax();
@@ -23,6 +24,7 @@ var donutResult = Morris.Donut({
         });
 
 $("#submit-job").on("click", function(){
+  $("#progress-bar").fadeIn();
   $("#result").empty();
   $("#donut-result").hide();
   $("#result-section").hide();
@@ -95,6 +97,7 @@ $("#submit-job").on("click", function(){
         {label: lanArr[20], value: jobArr[20]}
     ]);
     donutResult.redraw();
+    $("#progress-bar").fadeOut(2000);
     $("#donut-result").fadeIn(2000);
     $("#result-section").fadeIn(2000);
     donutResult.select(10); // Select skånes län
