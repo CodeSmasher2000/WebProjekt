@@ -7,6 +7,7 @@ $('.parallax').parallax();
 $('select').material_select();
 $("h1").hide();
 $("h2").hide();
+
 var donutResult = Morris.Donut({
         element: 'donut-result',
         resize: true,
@@ -99,6 +100,7 @@ $("#submit-job").on("click", function(){
   $("h2").hide();
   var movieDiv = document.getElementById("div-job");
   var baseUrl = "http://api.arbetsformedlingen.se/platsannons/matchning";
+
   var yrkesgruppId = $("#select-special").find(":selected").attr("data-yrkesgruppid");
   sessionStorage.setItem("job", yrkesgruppId);
   console.log(yrkesgruppId);
@@ -127,14 +129,17 @@ $("#submit-job").on("click", function(){
             }
           }).done(function(data){
             var jobresult = data.matchningslista;
-            console.log(jobresult);
-            console.log(lanArr[i]);
+
+      //      console.log(jobresult);
+      //      console.log(lanArr[i]);
             var annons = jobresult.antal_platsannonser;
-            console.log(annons);
+
+    //        console.log(annons);
+
             jobArr[i] = annons;
 
             var data = jobresult.matchningdata;
-            console.log(data);
+        //    console.log(data);
             var size = 0;
             var kommunData = [];
             for(var j in data) {
@@ -240,6 +245,29 @@ function populateSpecilzation(id) {
   });
 
 }
+function totalJobbs() {
+  $.ajax({
+    type: "GET",
+    // url: "http://api.arbetsformedlingen.se/af/v0/platsannonser/soklista/yrkesgrupper?",
+    url : "http://api.arbetsformedlingen.se/platsannons/soklista/lan",
+    // data: {"yrkesomradeid" : 3}, // 3 är id för data/id
+    dataType: "json",
+    success: function (response) {
+var antalLedigaJobb = response.soklista;
+   setTimeout(fade, 2000);
+ $("#totalJobbs").text(antalLedigaJobb.totalt_antal_ledigajobb);
+
+
+
+
+
+  console.log(antalLedigaJobb.totalt_antal_ledigajobb);
+    },
+    fail: function (response) {
+      console.log(response);
+    }
+  });
+}
 
 function getPrognos(yrkesomradeid) {
   $.ajax({
@@ -258,6 +286,7 @@ function getPrognos(yrkesomradeid) {
 
 $(document).ready(function () {
     populateJobs();
+    totalJobbs();
   $("#select-main").change(function () {
     var selectedMainGroup = $("#select-main").find(":selected").attr("data-yrkesomradeid");
     console.log(selectedMainGroup);
@@ -265,3 +294,8 @@ $(document).ready(function () {
   });
     //getPrognos(3);  // Finns endast har for testning
 });
+
+function fade(){
+  $("#totalJobbsint").fadeToggle(10000);
+         $("#totalJobbs").fadeToggle(12000);
+}

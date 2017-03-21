@@ -55,7 +55,12 @@ svg {
     margin-right: auto;
     display: block;
 }
+h5{
+font-size: 85px;
+text-align: center;
+padding: 50px;
 
+}
 
 
 @media only screen and (max-width : 992px) {

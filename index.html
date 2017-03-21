@@ -16,24 +16,28 @@
             <nav class="green">
                 <div class="container">
                     <div class="nav-wrapper">
+
                         <a href="jobresultpage.html" class="brand-logo white-text">Schwifty Jobb</a>
-                        <ul class="right side-nav" id="nav-mobile">
-                            <li class="hide-on-small-only"><a href="parallax.html"><i class="mdi-navigation-arrow-back"></i></a></li>
-                        </ul>
-                        <a class="button-collapse" href="#" data-activates='nav-mobile'><i class="mdi-navigation-menu"></i></a>
+
+
+
                     </div>
                 </div>
             </nav>
         </header>
 
         <div class="parallax-container">
-            <div class="parallax"><img src="image\background1.jpg" alt="Jobs" class="responsive-img"></div>
+            <h5 id ="totalJobbsint">Antal lediga jobb just nu...</h5>
+            <h5 id ="totalJobbs"></h5>
+            <div class="parallax"><img src="image\background1.jpg" alt="Jobs" class="responsive-img">
+
+            </div>
         </div>
 
         <div class="section white">
             <div class="section no-pad-bot">
                 <div class="row container">
-                    <h2 class="header">Hitta ditt drömjobb!</h2>
+                    <h3 class="header">Hitta ditt drömjobb!</h3>
                     <div class="input-field col s6 m5">
                         <select id="select-main">
                             <option value="" disabled selected>Välj yrkesområde</option>
@@ -52,14 +56,19 @@
                     </div>
 
                     <div class="col s12 margin-top-section">
+
                         <div class="progress" id="progress-bar">
                             <div class="indeterminate"></div>
                         </div>
+                          <div class="col s12 margin-top-section">
                         <h1>Län</h1>
                         <div id="donut-result" style="height: 250px;"></div>
+
+                          </div>
+                            <div class="col s12 margin-top-section">
                         <h2>Kommun</h2>
                         <div id="donut-result-kommun" style="height: 250px;"></div>
-
+                        </div>
                         <ul class="collapsible margin-top-section" data-collapsible="accordion" id="result-section">
                             <li>
                                 <div class="collapsible-header"><i class="material-icons">reorder</i>Resultat</div>
