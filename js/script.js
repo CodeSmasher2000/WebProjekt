@@ -19,8 +19,23 @@ var donutResult = Morris.Donut({
             "#67C69D",
           ]
         }).on('click', function(i, row){
-            alert(row.label + row.value);
-            console.log(i, row);
+            console.log(row.label + row.value);
+            console.log(row.kommun);
+            var data = row.kommun;
+
+            // Här kan vi göra något med kommundata
+            // row.kommun.kommunnamn
+            // row.kommun.jobbdata
+
+            // Alla jobb i "Jönköping"
+            var jobb = [];
+            for(var i in data) {
+                if(data[i].kommunnamn == "Jönköping") {
+                    jobb.push(data[i].jobbdata);
+                }
+            }
+
+            console.log(jobb);
         });
 
 $("#submit-job").on("click", function(){
@@ -43,8 +58,8 @@ $("#submit-job").on("click", function(){
           "Västerbottens län", "Västernorrlands län", "Västmanlands län",
           "Västra Götalands län", "Örebro län", "Östergötlands län"]; // namn på alla län.
   var jobArr = []; // antal jobb i län.
-
   var promises = [];
+  var kommunArr = [];
   var i = 0;
   for(i = 0; i < id.length; i++) {
       (function(i)
@@ -63,6 +78,17 @@ $("#submit-job").on("click", function(){
             var annons = jobresult.antal_platsannonser;
             console.log(annons);
             jobArr[i] = annons;
+
+            var data = jobresult.matchningdata;
+            console.log(data);
+            var size = 0;
+            var kommunData = [];
+            for(var j in data) {
+                kommunData.push({kommunnamn: data[j].kommunnamn, jobbdata: data[j]});
+            }
+
+            kommunArr[i] = kommunData;
+
             $("#result").append('<h6>' +"Län: " + lanArr[i] + " Antal jobb: " + annons + '</h6>');
           }).fail(function(data){
             console.log(data);
@@ -74,27 +100,27 @@ $("#submit-job").on("click", function(){
 
   $.when.apply(null, promises).done(function(){
       donutResult.setData([
-        {label: lanArr[0], value: jobArr[0]},
-        {label: lanArr[1], value: jobArr[1]},
-        {label: lanArr[2], value: jobArr[2]},
-        {label: lanArr[3], value: jobArr[3]},
-        {label: lanArr[4], value: jobArr[4]},
-        {label: lanArr[5], value: jobArr[5]},
-        {label: lanArr[6], value: jobArr[6]},
-        {label: lanArr[7], value: jobArr[7]},
-        {label: lanArr[8], value: jobArr[8]},
-        {label: lanArr[9], value: jobArr[9]},
-        {label: lanArr[10], value: jobArr[10]},
-        {label: lanArr[11], value: jobArr[11]},
-        {label: lanArr[12], value: jobArr[12]},
-        {label: lanArr[13], value: jobArr[13]},
-        {label: lanArr[14], value: jobArr[14]},
-        {label: lanArr[15], value: jobArr[15]},
-        {label: lanArr[16], value: jobArr[16]},
-        {label: lanArr[17], value: jobArr[17]},
-        {label: lanArr[18], value: jobArr[18]},
-        {label: lanArr[19], value: jobArr[19]},
-        {label: lanArr[20], value: jobArr[20]}
+        {label: lanArr[0], value: jobArr[0], kommun: kommunArr[0]},
+        {label: lanArr[1], value: jobArr[1], kommun: kommunArr[1]},
+        {label: lanArr[2], value: jobArr[2], kommun: kommunArr[2]},
+        {label: lanArr[3], value: jobArr[3], kommun: kommunArr[3]},
+        {label: lanArr[4], value: jobArr[4], kommun: kommunArr[4]},
+        {label: lanArr[5], value: jobArr[5], kommun: kommunArr[5]},
+        {label: lanArr[6], value: jobArr[6], kommun: kommunArr[6]},
+        {label: lanArr[7], value: jobArr[7], kommun: kommunArr[7]},
+        {label: lanArr[8], value: jobArr[8], kommun: kommunArr[8]},
+        {label: lanArr[9], value: jobArr[9], kommun: kommunArr[9]},
+        {label: lanArr[10], value: jobArr[10], kommun: kommunArr[10]},
+        {label: lanArr[11], value: jobArr[11], kommun: kommunArr[11]},
+        {label: lanArr[12], value: jobArr[12], kommun: kommunArr[12]},
+        {label: lanArr[13], value: jobArr[13], kommun: kommunArr[13]},
+        {label: lanArr[14], value: jobArr[14], kommun: kommunArr[14]},
+        {label: lanArr[15], value: jobArr[15], kommun: kommunArr[15]},
+        {label: lanArr[16], value: jobArr[16], kommun: kommunArr[16]},
+        {label: lanArr[17], value: jobArr[17], kommun: kommunArr[17]},
+        {label: lanArr[18], value: jobArr[18], kommun: kommunArr[18]},
+        {label: lanArr[19], value: jobArr[19], kommun: kommunArr[19]},
+        {label: lanArr[20], value: jobArr[20], kommun: kommunArr[20]}
     ]);
     donutResult.redraw();
     $("#progress-bar").fadeOut(2000);
