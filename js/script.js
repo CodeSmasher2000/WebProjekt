@@ -247,63 +247,67 @@ function getWage(ssyk) {
   $.ajax({
     type: "POST",
     url: "http://api.scb.se/OV0104/v1/doris/sv/ssd/START/AM/AM0110/AM0110B/LoneSpridSektorYrk",
-    data: {
+    data: JSON.stringify({
       "query": [{
-          "code": "Sektor",
-          "selection": {
-            "filter": "item",
-            "values": [
-              "0"
-            ]
-          }
-        },
-        {
-          "code": "Yrkesgrupp",
-          "selection": {
-            "filter": "item",
-            "values": [
-              "214"
-            ]
-          }
-        },
-        {
-          "code": "Kon",
-          "selection": {
-            "filter": "item",
-            "values": [
-              "1+2"
-            ]
-          }
-        },
-        {
-          "code": "ContentsCode",
-          "selection": {
-            "filter": "item",
-            "values": [
-              "AM0110G1"
-            ]
-          }
-        },
-        {
-          "code": "Tid",
-          "selection": {
-            "filter": "item",
-            "values": [
-              "2013"
-            ]
-          }
+        "code": "Sektor",
+        "selection": {
+          "filter": "item",
+          "values": [
+            "0"
+          ]
         }
+      },
+      {
+        "code": "Yrkesgrupp",
+        "selection": {
+          "filter": "item",
+          "values": [
+            ssyk
+          ]
+        }
+      },
+      {
+        "code": "Kon",
+        "selection": {
+          "filter": "item",
+          "values": [
+            "1+2"
+          ]
+        }
+      },
+      {
+        "code": "ContentsCode",
+        "selection": {
+          "filter": "item",
+          "values": [
+            "AM0110G1"
+          ]
+        }
+      },
+      {
+        "code": "Tid",
+        "selection": {
+          "filter": "item",
+          "values": [
+            "2013"
+          ]
+        }
+      }
       ],
       "response": {
-        "format": "px"
+        "format": "json"
       }
-    },
+    }),
     dataType: "json",
     success: function (response) {
       console.log(response);
+
+        // type: "success",
+        // wage: response.data.values[0],
+        // year: response.data.key[3],
     },
     fail: function (response) {
-      console.log(response);
+      
     }
   });
 }
@@ -316,5 +320,5 @@ $(document).ready(function () {
     populateSpecilzation(selectedMainGroup);
   });
   //getPrognos(3);  // Finns endast har for testning
-  getWage(312); // finns endast här för testnign.
+  getWage(214); // finns endast här för testnign.
 });
