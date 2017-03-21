@@ -77,6 +77,9 @@ padding: 50px;
   #index-banner .section {
     top: 0;
   }
+  .parallax-container{
+    min-height: 45vh;
+  }
 }
 
 .icon-block {
