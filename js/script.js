@@ -5,7 +5,8 @@ $("#donut-result-kommun").hide();
 $("#result-section").hide();
 $('.parallax').parallax();
 $('select').material_select();
-
+$("h1").hide();
+$("h2").hide();
 var donutResult = Morris.Donut({
         element: 'donut-result',
         resize: true,
@@ -27,7 +28,7 @@ var donutResult = Morris.Donut({
             $("#donut-result-kommun").hide();
             $("#result").empty();
             $("#result-section").hide();
-
+            $("h2").hide();
             if(data.length > 0) {
                 var donutData = [];
                 var selected;
@@ -47,7 +48,7 @@ var donutResult = Morris.Donut({
 
                 donutResultKommun.setData(donutData);
                 donutResultKommun.redraw();
-
+                $("h2").fadeIn(2000);
                 $("#donut-result-kommun").fadeIn(2000);
                 donutResultKommun.select(0);
                 setTimeout(function() {
@@ -80,8 +81,8 @@ var donutResultKommun = Morris.Donut({
             $("#result-section").hide();
 
             for(var j in data) {
+                $("#result").append( '<i class="material-icons">label_outline</i>');
                 $("#result").append( '<a href = "'+ data[j].jobbdata.annonsurl+'">' + data[j].jobbdata.annonsrubrik +  '</a>'+'<br>');
-              
 
             }
 
@@ -94,6 +95,8 @@ $("#submit-job").on("click", function(){
   $("#donut-result").hide();
   $("#donut-result-kommun").hide();
   $("#result-section").hide();
+  $("h1").hide();
+  $("h2").hide();
   var movieDiv = document.getElementById("div-job");
   var baseUrl = "http://api.arbetsformedlingen.se/platsannons/matchning";
   var yrkesgruppId = $("#select-special").find(":selected").attr("data-yrkesgruppid");
@@ -174,6 +177,7 @@ $("#submit-job").on("click", function(){
     donutResult.redraw();
     $("#progress-bar").fadeOut(2000);
     $("#donut-result").fadeIn(2000);
+    $("h1").fadeIn(2000);
     donutResult.select(10); // Select skånes län
     });
 });
