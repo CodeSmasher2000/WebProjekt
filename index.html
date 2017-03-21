@@ -1,117 +1,120 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
-  <title>Parallax Template - Materialize</title>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+        <title>Schwifty Jobs</title>
 
-  <!-- CSS  -->
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-</head>
-<body>
-  <nav class="white" role="navigation">
-    <div class="nav-wrapper container">
-      <a id="logo-container" href="#" class="brand-logo">Schwifty Jobz</a>
-      <ul class="right hide-on-med-and-down">
-        <li><a href="#">Navbar Link</a></li>
-      </ul>
+        <!-- CSS  -->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+        <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 
-      <ul id="nav-mobile" class="side-nav">
-        <li><a href="#">Navbar Link</a></li>
-      </ul>
-      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
-    </div>
-  </nav>
+    </head>
+    <body>
+        <header>
+            <nav class="green">
+                <div class="container">
+                    <div class="nav-wrapper">
+                        <a href="jobresultpage.html" class="brand-logo white-text">Schwifty Jobb</a>
+                        <ul class="right side-nav" id="nav-mobile">
+                            <li class="hide-on-small-only"><a href="parallax.html"><i class="mdi-navigation-arrow-back"></i></a></li>
+                        </ul>
+                        <a class="button-collapse" href="#" data-activates='nav-mobile'><i class="mdi-navigation-menu"></i></a>
+                    </div>
+                </div>
+            </nav>
+        </header>
 
-  <div id="index-banner" class="parallax-container">
-    <div class="section no-pad-bot">
-      <div class="container">
-        <br><br>
-        <h1 class="header center teal-text text-lighten-2" id="startHeader">Det Enkla Sättet Att Hitta Drömjobbet!</h1>
-        <div class="row center">
-            <div class="input-field col s6">
-              <select id="select-job">
-                <option value="" disabled selected>Välj ditt yrke</option>
-                <option value="programmerare">Programmerare</option>
-                <option value="städare">Dick Sucker</option>
-                <option value="massör">Pattes Slave</option>
-              </select>
+        <div class="parallax-container">
+            <div class="parallax"><img src="image\background1.jpg" alt="Jobs" class="responsive-img"></div>
+        </div>
+
+        <div class="section white">
+            <div class="section no-pad-bot">
+                <div class="row container">
+                    <h2 class="header">Hitta ditt drömjobb!</h2>
+                    <div class="input-field col s6 m5">
+                        <select id="select-main">
+                            <option value="" disabled selected>Välj yrkesområde</option>
+                        </select>
+                    </div>
+                    <div class="input-field col s6 m5">
+                        <select id="select-special">
+                            <option value="" disabled selected>Välj specialisering</option>
+                        </select>
+                    </div>
+
+                    <div class="input-field col s12 m2">
+                        <button class="btn waves-effect waves-light" type="submit" name="action" id="submit-job">Sök
+                            <i class="material-icons right">search</i>
+                        </button>
+                    </div>
+
+                    <div class="col s12 margin-top-section">
+                        <div class="progress" id="progress-bar">
+                            <div class="indeterminate"></div>
+                        </div>
+
+                        <div id="donut-result" style="height: 250px;"></div>
+
+                        <ul class="collapsible margin-top-section" data-collapsible="accordion" id="result-section">
+                            <li>
+                                <div class="collapsible-header"><i class="material-icons">reorder</i>Resultat</div>
+                                <div class="collapsible-body" id="results-body">
+                                    <div class="container">
+                                        <p id="result"></p>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             </div>
-            <div class="input-field col s6">
-            <select id="select-lan">
-              <option value="" disabled selected>Välj ditt område</option>
-              <option value="1">Stockholm</option>
-              <option value="10">Blekinge</option>
-              <option value="20">Dalarna</option>
-              <option value="21">Gävleborg</option>
-              <option value="13">Halland</option>
-              <option value="23">Jämtland</option>
-              <option value="6">Jönköping</option>
-              <option value="8">Kalmar</option>
-              <option value="12">Skåne</option>
-            </select>
+        </div>
+
+        <div class="parallax-container">
+            <div class="parallax"><img src="image\background2.jpg" alt="Jobs" class="responsive-img"></div>
+        </div>
+
+        <footer class="page-footer green">
+            <div class="container">
+                <div class="row">
+                    <div class="col s12">
+                        <h5 class="white-text">Utvecklad med &hearts; av</h5>
+                        <div class="chip white">
+                            <img src="image/alex.jpg" alt="Contact Person">
+                            Alexander Johansson
+                        </div>
+                        <div class="chip white">
+                            <img src="image/jonatan.jpg" alt="Contact Person">
+                            Jonatan Wahlstedt
+                        </div>
+                        <div class="chip white">
+                            <img src="image/ludwig.jpg" alt="Contact Person">
+                            Ludwig Ninn
+                        </div>
+                        <div class="chip white">
+                            <img src="image/patrik.jpg" alt="Contact Person">
+                            Patrik Larsson
+                        </div>
+                    </div>
+                </div>
             </div>
-            <button class="btn waves-effect waves-light" type="submit" name="action" id="submit-job">Submit
-                <i class="material-icons right">send</i>
-            </button>
-        </div>
-        <br><br>
+            <div class="footer-copyright">
+                <div class="container white-text">
+                © 2017 Schwifty
+                </div>
+            </div>
+        </footer>
 
-      </div>
-    </div>
-    <div class="parallax"><img src="image\spacebackground.jpg" alt="Unsplashed          background img 1"></div>
-    </div>
-
-
-  
-
-
- 
-
-  <footer class="page-footer purple">
-    <div class="container">
-      <div class="row">
-        <div class="col l6 s12">
-          <h5 class="white-text">Company Bio</h5>
-          <p class="grey-text text-lighten-4">We are a team of college students working on this project like it's our full time job. Any amount would help support and continue development on this project and is greatly appreciated.</p>
-
-
-        </div>
-        <div class="col l3 s12">
-          <h5 class="white-text">Settings</h5>
-          <ul>
-            <li><a class="white-text" href="#!">Link 1</a></li>
-            <li><a class="white-text" href="#!">Link 2</a></li>
-            <li><a class="white-text" href="#!">Link 3</a></li>
-            <li><a class="white-text" href="#!">Link 4</a></li>
-          </ul>
-        </div>
-        <div class="col l3 s12">
-          <h5 class="white-text">Connect</h5>
-          <ul>
-            <li><a class="white-text" href="#!">Link 1</a></li>
-            <li><a class="white-text" href="#!">Link 2</a></li>
-            <li><a class="white-text" href="#!">Link 3</a></li>
-            <li><a class="white-text" href="#!">Link 4</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <div class="footer-copyright">
-      <div class="container">
-      Made by <a class="brown-text text-lighten-3" href="http://materializecss.com">Materialize</a>
-      </div>
-    </div>
-  </footer>
-
-
-  <!--  Scripts-->
-  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-  <script src="js/materialize.js"></script>
-  <script src="js/init.js"></script>
-  <script src="js/script.js"></script>
-
-  </body>
+        <!--  Scripts-->
+        <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <script src="js/materialize.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
+        <script src="js/script.js"></script>
+    </body>
 </html>
