@@ -1,6 +1,7 @@
 /* Anropar API och hämtar resultat som matchar den inmatade strängen */
 $("#progress-bar").hide();
 $("#donut-result").hide();
+$("#donut-result-kommun").hide();
 $("#result-section").hide();
 $('.parallax').parallax();
 $('select').material_select();
@@ -23,25 +24,73 @@ var donutResult = Morris.Donut({
             console.log(row.kommun);
             var data = row.kommun;
 
-            // Här kan vi göra något med kommundata
-            // row.kommun.kommunnamn
-            // row.kommun.jobbdata
+            $("#donut-result-kommun").hide();
+            $("#result").empty();
+            $("#result-section").hide();
 
-            // Alla jobb i "Jönköping"
-            var jobb = [];
-            for(var i in data) {
-                if(data[i].kommunnamn == "Jönköping") {
-                    jobb.push(data[i].jobbdata);
-                }
+            if(data.length > 0) {
+                var donutData = [];
+                var selected;
+                (function(data) {
+                    var kommunJobb = {};
+                    $.each(data, function() {
+                        if (!kommunJobb[this["kommunnamn"]])
+                            kommunJobb[this["kommunnamn"]] = [];
+                        kommunJobb[this["kommunnamn"]].push(this);
+                    });
+
+                    for(var d in kommunJobb) {
+                        donutData.push({label: kommunJobb[d][0].kommunnamn, value: kommunJobb[d].length, data: kommunJobb[d]});
+                        selected = kommunJobb[d][0].kommunnamn;
+                    }
+                })(data);
+
+                donutResultKommun.setData(donutData);
+                donutResultKommun.redraw();
+
+                $("#donut-result-kommun").fadeIn(2000);
+                donutResultKommun.select(1);
+                setTimeout(function() {
+                    donutResultKommun.select(1);
+                }, 2100);
+
+                console.log(donutData);
+            }
+        });
+
+var donutResultKommun = Morris.Donut({
+        element: 'donut-result-kommun',
+        resize: true,
+        data: [
+          {label: "placeholder", value: 0}
+        ],
+          backgroundColor:"#ccc",
+          labelColor:"#060",
+          colors:[
+            "#0BA462",
+            "#39B580",
+            "#67C69D",
+          ]
+        }).on('click', function(i, row){
+            console.log(row.label + row.value);
+            console.log(row.data);
+            console.log(i, row);
+            var data = row.data;
+            $("#result").empty();
+            $("#result-section").hide();
+
+            for(var j in data) {
+                $("#result").append('<h6>' +"Annonsrubrik: " + data[j].jobbdata.annonsrubrik + " Annonsurl: " +  data[j].jobbdata.annonsurl + '</h6>');
             }
 
-            console.log(jobb);
+            $("#result-section").fadeIn(2000);
         });
 
 $("#submit-job").on("click", function(){
   $("#progress-bar").fadeIn();
   $("#result").empty();
   $("#donut-result").hide();
+  $("#donut-result-kommun").hide();
   $("#result-section").hide();
   var movieDiv = document.getElementById("div-job");
   var baseUrl = "http://api.arbetsformedlingen.se/platsannons/matchning";
@@ -88,8 +137,6 @@ $("#submit-job").on("click", function(){
             }
 
             kommunArr[i] = kommunData;
-
-            $("#result").append('<h6>' +"Län: " + lanArr[i] + " Antal jobb: " + annons + '</h6>');
           }).fail(function(data){
             console.log(data);
           });
@@ -125,7 +172,6 @@ $("#submit-job").on("click", function(){
     donutResult.redraw();
     $("#progress-bar").fadeOut(2000);
     $("#donut-result").fadeIn(2000);
-    $("#result-section").fadeIn(2000);
     donutResult.select(10); // Select skånes län
     });
 });
