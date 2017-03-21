@@ -49,9 +49,9 @@ var donutResult = Morris.Donut({
                 donutResultKommun.redraw();
 
                 $("#donut-result-kommun").fadeIn(2000);
-                donutResultKommun.select(1);
+                donutResultKommun.select(0);
                 setTimeout(function() {
-                    donutResultKommun.select(1);
+                    donutResultKommun.select(0);
                 }, 2100);
 
                 console.log(donutData);
@@ -80,7 +80,9 @@ var donutResultKommun = Morris.Donut({
             $("#result-section").hide();
 
             for(var j in data) {
-                $("#result").append('<h6>' +"Annonsrubrik: " + data[j].jobbdata.annonsrubrik + " Annonsurl: " +  data[j].jobbdata.annonsurl + '</h6>');
+                $("#result").append( '<a href = "'+ data[j].jobbdata.annonsurl+'">' + data[j].jobbdata.annonsrubrik +  '</a>'+'<br>');
+              
+
             }
 
             $("#result-section").fadeIn(2000);
