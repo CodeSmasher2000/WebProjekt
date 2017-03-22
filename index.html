@@ -27,10 +27,14 @@
         </header>
 
         <div class="parallax-container">
-            <h4 id ="totalJobbsint">Antal lediga jobb just nu...</h4>
-            <h4 id ="totalJobbs"></h4>
+            <div class="main-box">
+                <div class="main-box-content-container">
+                    <i class="material-icons">work</i>
+                    <h4 id ="totalJobbsint">Antal lediga jobb just nu</h4>
+                    <h4 id ="totalJobbs"></h4>
+                </div>
+            </div>
             <div class="parallax"><img src="image\background1.jpg" alt="Jobs" class="responsive-img">
-
             </div>
         </div>
 
@@ -60,20 +64,19 @@
                         <div class="progress" id="progress-bar">
                             <div class="indeterminate"></div>
                         </div>
-
+                        
                         <div class="col s6 offset-s3 text-center">
                           <h1 id = "lon">Lön</h1>
                               <div id="area-result"></div>
                         </div>
 
                         <div class="col s6 offset-s3 text-center">
-                          <h1 id = "lan">Län</h1>
+                          <h1 class="align-center" id = "lan">Län</h1>
                           <div id="donut-result" style="height: 250px;"></div>
                         </div>
 
-
                         <div class="col s6 offset-s3 text-center">
-                          <h1 id = "kom">Kommun</h1>
+                          <h1 class="align-center" id = "kom">Kommun</h1>
                           <div id="donut-result-kommun" style="height: 250px;"></div>
                         </div>
                         <ul class="collapsible margin-top-section" data-collapsible="accordion" id="result-section">

@@ -256,18 +256,11 @@ function populateSpecilzation(id) {
 function totalJobbs() {
   $.ajax({
     type: "GET",
-    // url: "http://api.arbetsformedlingen.se/af/v0/platsannonser/soklista/yrkesgrupper?",
     url : "http://api.arbetsformedlingen.se/platsannons/soklista/lan",
-    // data: {"yrkesomradeid" : 3}, // 3 är id för data/id
     dataType: "json",
     success: function (response) {
 var antalLedigaJobb = response.soklista;
-   setTimeout(fade, 2000);
  $("#totalJobbs").text(antalLedigaJobb.totalt_antal_ledigajobb);
-
-
-
-
 
   console.log(antalLedigaJobb.totalt_antal_ledigajobb);
     },
@@ -302,11 +295,6 @@ $(document).ready(function () {
   });
     //getPrognos(3);  // Finns endast har for testning
 });
-
-function fade(){
-  $("#totalJobbsint").fadeToggle(10000);
-         $("#totalJobbs").fadeToggle(12000);
-}
 
 var areaResult = Morris.Area({
   element: 'area-result',
