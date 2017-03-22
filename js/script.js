@@ -409,8 +409,9 @@ $(document).ready(function () {
   $("#select-main").change(function () {
     var selectedMainGroup = $("#select-main").find(":selected").attr("data-yrkesomradeid");
     console.log(selectedMainGroup);
+      getPrognos(selectedMainGroup);
     populateSpecilzation(selectedMainGroup);
-    getPrognos(selectedMainGroup);
+
   });
 });
 
@@ -534,7 +535,7 @@ function getPrognos(yrkesomradeid) {
     },
     dataType: "json",
     success: function (response) {
-      var ssyk = [];
+    
       console.log(response);
       // Hamtar ssyk for jobb
       for (var i = 0; i < response.length; i++) {
