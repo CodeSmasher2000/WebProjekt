@@ -302,7 +302,7 @@ $("#submit-job").on("click", function () {
         kommun: kommunArr[20]
       }
     ]);
-  getWage(ssyk);
+    getWage(ssyk);
     donutResult.redraw();
     $("#progress-bar").fadeOut(2000);
 
@@ -315,9 +315,9 @@ $("#submit-job").on("click", function () {
     areaResult.redraw();
     $("#lon").fadeIn(2000);
     $("#area-result").fadeIn(2000);
-    donutResultKommun.select(0);
+    areaResult.select(0);
     setTimeout(function () {
-      donutResultKommun.select(0);
+      areaResult.select(0);
     }, 2100);
 
 
