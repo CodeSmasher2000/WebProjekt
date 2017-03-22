@@ -484,7 +484,7 @@ function getWage(ssyk) {
       
       wageMap.forEach(function (value, key, map) {
         var wage = map.get(key).avgwage;
-        chartData.push({ y : key, b : wage});
+        chartData.push({ y : key, b : Math.round(wage)});
       });
       console.log(chartData);
       areaResult.setData(chartData);
