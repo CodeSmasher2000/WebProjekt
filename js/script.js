@@ -10,6 +10,8 @@ $("#lon").hide();
 $("#lan").hide();
 $("#kom").hide();
 
+var chartData = [];
+
 var areaResult = Morris.Area({
   element: 'area-result',
   data: [{
@@ -480,8 +482,7 @@ function getWage(ssyk) {
         }
       }
       console.log(wageMap);
-      var chartData = [];
-      
+      chartData = [];
       wageMap.forEach(function (value, key, map) {
         var wage = map.get(key).avgwage;
         chartData.push({ y : key, b : Math.round(wage)});
