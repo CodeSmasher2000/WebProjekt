@@ -40,6 +40,7 @@ p {
   line-height: 0;
   height: auto;
   color: rgba(255,255,255,.9);
+  display: flex;
 }
 
 .margin-top-section {
@@ -54,14 +55,47 @@ svg {
     margin-left: auto;
     margin-right: auto;
     display: block;
+    width: 354px !important;
 }
-h5{
+/*h4{
 font-size: 85px;
 text-align: center;
 padding: 50px;
 
+}*/
+
+.main-box {
+    background-color: rgba(255,255,255,.2);
+    width: 250px;
+    height: 250px;
+    border: 1px solid #d2d2d2;
+    align-items: center;
+    margin-left: 50px;
+    display: table;
+    align-self: center;
 }
 
+.main-box .main-box-content-container {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.main-box i {
+    font-size: 42px;
+    margin-bottom: 10px;
+    margin-top: 25px;
+    color: #fff;
+}
+
+.main-box h4 {
+    padding: 10px;
+    color: #fff;
+}
+
+.align-center {
+    text-align: center;
+}
 
 @media only screen and (max-width : 992px) {
   .parallax-container .section {
@@ -79,7 +113,12 @@ padding: 50px;
   }
   .parallax-container{
     min-height: 45vh;
+    justify-content: center;
   }
+  .main-box {
+      margin-left: 0;
+  }
+
 }
 
 .icon-block {

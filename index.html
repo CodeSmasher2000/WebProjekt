@@ -27,10 +27,14 @@
         </header>
 
         <div class="parallax-container">
-            <h5 id ="totalJobbsint">Antal lediga jobb just nu...</h5>
-            <h5 id ="totalJobbs"></h5>
-            <div class="parallax"><img src="image\background1.jpg" alt="Jobs" class="responsive-img">
-
+            <div class="main-box">
+                <div class="main-box-content-container">
+                    <i class="material-icons">work</i>
+                    <h4 id ="totalJobbsint">Antal lediga jobb just nu</h4>
+                    <h4 id ="totalJobbs"></h4>
+                </div>
+            </div>
+            <div class="parallax"><img src="image/background1.jpg" alt="Jobs" class="responsive-img">
             </div>
         </div>
 
@@ -60,39 +64,48 @@
                         <div class="progress" id="progress-bar">
                             <div class="indeterminate"></div>
                         </div>
-                          <div class="col s12 margin-top-section">
-                        <h1>Län</h1>
-                        <div id="donut-result" style="height: 250px;"></div>
 
-                          </div>
-                            <div class="col s12 margin-top-section">
-                        <h2>Kommun</h2>
-                        <div id="donut-result-kommun" style="height: 250px;"></div>
+                        <div class="col s6 offset-s3 text-center align-center">
+                          <h1 class="align-center" id = "lon">Lön</h1>
+                              <div id="area-result"></div>
                         </div>
-                        <ul class="collapsible margin-top-section" data-collapsible="accordion" id="result-section">
-                            <li>
-                                <div class="collapsible-header"><i class="material-icons">reorder</i>Resultat</div>
-                                <div class="collapsible-body" id="results-body">
-                                    <div class="container">
-                                        <p id="result"></p>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
+
+                        <div class="col s6 offset-s3 text-center">
+                          <h1 class="align-center" id = "lan">Län</h1>
+                          <div id="donut-result" style="height: 250px;"></div>
+                        </div>
+
+                        <div class="col s6 offset-s3 text-center">
+                          <h1 class="align-center" id = "kom">Kommun</h1>
+                          <div id="donut-result-kommun" style="height: 250px;"></div>
+                        </div>
+
+                        <div class="col s12">
+                          <ul class="collapsible margin-top-section" data-collapsible="accordion" id="result-section">
+                              <li>
+                                  <div class="collapsible-header"><i class="material-icons">reorder</i>Resultat</div>
+                                  <div class="collapsible-body" id="results-body">
+                                      <div class="container">
+                                          <p id="result"></p>
+                                      </div>
+                                  </div>
+                              </li>
+                          </ul>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
 
         <div class="parallax-container">
-            <div class="parallax"><img src="image\background2.jpg" alt="Jobs" class="responsive-img"></div>
+            <div class="parallax"><img src="image/background2.jpg" alt="Jobs" class="responsive-img"></div>
         </div>
 
         <footer class="page-footer green">
             <div class="container">
                 <div class="row">
                     <div class="col s12">
-                        <h5 class="white-text">Utvecklad med &hearts; av</h5>
+                        <h5 class="white-text">Utvecklad med &hearts; av</h6>
                         <div class="chip white">
                             <img src="image/alex.jpg" alt="Contact Person">
                             Alexander Johansson

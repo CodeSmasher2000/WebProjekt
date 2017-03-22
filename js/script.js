@@ -1,12 +1,26 @@
 /* Anropar API och hämtar resultat som matchar den inmatade strängen */
 $("#progress-bar").hide();
 $("#donut-result").hide();
+$("#area-result").hide();
 $("#donut-result-kommun").hide();
 $("#result-section").hide();
 $('.parallax').parallax();
 $('select').material_select();
-$("h1").hide();
-$("h2").hide();
+$("#lon").hide();
+$("#lan").hide();
+$("#kom").hide();
+
+var areaResult = Morris.Area({
+  element: 'area-result',
+  data: [{
+    y: "placeholder",
+    b: 0
+  },],
+  xkey: 'y',
+  ykeys: ['b'],
+  labels: ['Lön'],
+  lineColors: ['#0BA462']
+});
 
 var donutResult = Morris.Donut({
   element: 'donut-result',
@@ -30,7 +44,7 @@ var donutResult = Morris.Donut({
   $("#donut-result-kommun").hide();
   $("#result").empty();
   $("#result-section").hide();
-  $("h2").hide();
+  $("#kom").hide();
   if (data.length > 0) {
     var donutData = [];
     var selected;
@@ -54,7 +68,7 @@ var donutResult = Morris.Donut({
 
     donutResultKommun.setData(donutData);
     donutResultKommun.redraw();
-    $("h2").fadeIn(2000);
+    $("#kom").fadeIn(2000);
     $("#donut-result-kommun").fadeIn(2000);
     donutResultKommun.select(0);
     setTimeout(function () {
@@ -102,8 +116,10 @@ $("#submit-job").on("click", function () {
   $("#donut-result").hide();
   $("#donut-result-kommun").hide();
   $("#result-section").hide();
-  $("h1").hide();
-  $("h2").hide();
+  $("#area-result").hide();
+  $("#lon").hide();
+  $("#lan").hide();
+  $("#kom").hide();
   var movieDiv = document.getElementById("div-job");
   var baseUrl = "http://api.arbetsformedlingen.se/platsannons/matchning";
 
@@ -273,8 +289,12 @@ $("#submit-job").on("click", function () {
     ]);
     donutResult.redraw();
     $("#progress-bar").fadeOut(2000);
-    $("#donut-result").fadeIn(2000);
-    $("h1").fadeIn(2000);
+    $("#lon").fadeIn(2000);
+    $("#area-result").fadeIn(2000);
+    $("#donut-result").fadeIn(3000);
+    $("#lan").fadeIn(3000);
+
+
     donutResult.select(10); // Select skånes län
   });
 });
@@ -297,7 +317,7 @@ function populateJobs() {
           .attr("value", index)
           .attr("data-yrkesomradeid", data.id)
           .html(data.namn)
-          .appendTo($("#select-main"));
+          .appendTo($("#select-main"))
       });
       $('#select-main').material_select();
     },
@@ -343,18 +363,11 @@ function populateSpecilzation(id) {
 function totalJobbs() {
   $.ajax({
     type: "GET",
-    // url: "http://api.arbetsformedlingen.se/af/v0/platsannonser/soklista/yrkesgrupper?",
     url: "http://api.arbetsformedlingen.se/platsannons/soklista/lan",
-    // data: {"yrkesomradeid" : 3}, // 3 är id för data/id
     dataType: "json",
     success: function (response) {
       var antalLedigaJobb = response.soklista;
-      setTimeout(fade, 2000);
       $("#totalJobbs").text(antalLedigaJobb.totalt_antal_ledigajobb);
-
-
-
-
 
       console.log(antalLedigaJobb.totalt_antal_ledigajobb);
     },
@@ -364,32 +377,10 @@ function totalJobbs() {
   });
 }
 
-function getPrognos(yrkesomradeid) {
-  $.ajax({
-    type: "GET",
-    url: "http://api.arbetsformedlingen.se/af/v0/yrkesprognoser/soklista/prognoser?",
-    data: {
-      "yrkesomradeid": yrkesomradeid
-    },
-    dataType: "json",
-    success: function (response) {
-      var ssyk = [];
-      console.log(response);
-      // Hamtar ssyk for jobb
-      for (var i = 0; i < response.length; i++) {
-        ssyk.push({
-          "id": response[i].yrkesgruppID,
-          "name": response[i].prognosrubrik
-        });
-      }
-      getWage(ssyk);
-    }
-  });
-}
-
 $(document).ready(function () {
   populateJobs();
   totalJobbs();
+
   $("#select-main").change(function () {
     var selectedMainGroup = $("#select-main").find(":selected").attr("data-yrkesomradeid");
     console.log(selectedMainGroup);
@@ -456,23 +447,75 @@ function getWage(ssyk) {
     dataType: "json",
     success: function (response) {
       console.log(response);
-      var wageByYear = [];
+      var wageMap = new Map();
       for (var i = 0; i < response.data.length; i++) {
+
+        var wage = response.data[i].values[0];
+        // Kontrollerar om data inte finns tillanglig
+        if (wage === '..') {
+          wage = 0;
+        }
+
         var currentObj = {
           year: response.data[i].key[3],
-          id: response.data[i].key[1],
-          wage: response.data[i].values[0]
+          //id: response.data[i].key[1],
+          wage: wage
         };
-        console.log(currentObj);
+        console.log(currentObj.year);
+        // Lagg till values till en map.
+        if (!wageMap.has(currentObj.year)) {
+          var elem = {
+            totwage: parseInt(currentObj.wage),
+            counter: 1,
+            avgwage: currentObj.wage / 1
+          };
+          wageMap.set(currentObj.year, elem);
+        } else {
+          var elem = wageMap.get(currentObj.year);
+          elem.totwage = elem.totwage += parseInt(currentObj.wage);
+          elem.counter++;
+          elem.avgwage = elem.totwage / elem.counter;
+          wageMap.set(currentObj.year, elem);
+        }
       }
+      console.log(wageMap);
+      var chartData = [];
+      
+      wageMap.forEach(function (value, key, map) {
+        var wage = map.get(key).avgwage;
+        chartData.push({ y : key, b : wage});
+      });
+      console.log(chartData);
+      areaResult.setData(chartData);
+      areaResult.redraw();
     },
     fail: function (response) {
 
     }
   });
+
+  
 }
 
-function fade() {
-  $("#totalJobbsint").fadeToggle(10000);
-  $("#totalJobbs").fadeToggle(12000);
+function getPrognos(yrkesomradeid) {
+  $.ajax({
+    type: "GET",
+    url: "http://api.arbetsformedlingen.se/af/v0/yrkesprognoser/soklista/prognoser?",
+    data: {
+      "yrkesomradeid": yrkesomradeid
+    },
+    dataType: "json",
+    success: function (response) {
+      var ssyk = [];
+      console.log(response);
+      // Hamtar ssyk for jobb
+      for (var i = 0; i < response.length; i++) {
+        ssyk.push({
+          "id": response[i].yrkesgruppID,
+          "name": response[i].prognosrubrik
+        });
+      }
+      getWage(ssyk);
+    }
+  });
 }
