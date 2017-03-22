@@ -1,12 +1,14 @@
 /* Anropar API och hämtar resultat som matchar den inmatade strängen */
 $("#progress-bar").hide();
 $("#donut-result").hide();
+$("#area-result").hide();
 $("#donut-result-kommun").hide();
 $("#result-section").hide();
 $('.parallax').parallax();
 $('select').material_select();
-$("h1").hide();
-$("h2").hide();
+$("#lon").hide();
+$("#lan").hide();
+$("#kom").hide();
 
 var donutResult = Morris.Donut({
         element: 'donut-result',
@@ -29,7 +31,7 @@ var donutResult = Morris.Donut({
             $("#donut-result-kommun").hide();
             $("#result").empty();
             $("#result-section").hide();
-            $("h2").hide();
+            $("#kom").hide();
             if(data.length > 0) {
                 var donutData = [];
                 var selected;
@@ -49,7 +51,7 @@ var donutResult = Morris.Donut({
 
                 donutResultKommun.setData(donutData);
                 donutResultKommun.redraw();
-                $("h2").fadeIn(2000);
+                $("#kom").fadeIn(2000);
                 $("#donut-result-kommun").fadeIn(2000);
                 donutResultKommun.select(0);
                 setTimeout(function() {
@@ -96,8 +98,10 @@ $("#submit-job").on("click", function(){
   $("#donut-result").hide();
   $("#donut-result-kommun").hide();
   $("#result-section").hide();
-  $("h1").hide();
-  $("h2").hide();
+  $("#area-result").hide();
+  $("#lon").hide();
+  $("#lan").hide();
+  $("#kom").hide();
   var movieDiv = document.getElementById("div-job");
   var baseUrl = "http://api.arbetsformedlingen.se/platsannons/matchning";
 
@@ -181,8 +185,12 @@ $("#submit-job").on("click", function(){
     ]);
     donutResult.redraw();
     $("#progress-bar").fadeOut(2000);
-    $("#donut-result").fadeIn(2000);
-    $("h1").fadeIn(2000);
+    $("#lon").fadeIn(2000);
+    $("#area-result").fadeIn(2000);
+    $("#donut-result").fadeIn(3000);
+    $("#lan").fadeIn(3000);
+
+
     donutResult.select(10); // Select skånes län
     });
 });
@@ -299,3 +307,19 @@ function fade(){
   $("#totalJobbsint").fadeToggle(10000);
          $("#totalJobbs").fadeToggle(12000);
 }
+
+var areaResult = Morris.Area({
+  element: 'area-result',
+  data: [
+
+    { y: '2007',  b: 65 },
+   { y: '2008',  b: 40 },
+   { y: '2009',  b: 65 },
+   { y: '2010',  b: 40 },
+   { y: '2011',  b: 65 }
+  ],
+  xkey: 'y',
+  ykeys: ['b'],
+  labels: ['Lön'],
+   lineColors: ['#0BA462']
+});
