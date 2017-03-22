@@ -9,7 +9,7 @@ $('select').material_select();
 $("#lon").hide();
 $("#lan").hide();
 $("#kom").hide();
-
+    var ssyk = [];
 var chartData = [];
 
 var areaResult = Morris.Line({
@@ -134,13 +134,7 @@ $("#submit-job").on("click", function () {
   $("#lan").hide();
   $("#kom").hide();
 
-  var selectedMainGroup = $("#select-main").find(":selected").attr("data-yrkesomradeid");
-  console.log(selectedMainGroup);
-  populateSpecilzation(selectedMainGroup);
-  getPrognos(selectedMainGroup);
-  areaResult.setData(chartData);
-  areaResult.redraw();
-  
+
   var movieDiv = document.getElementById("div-job");
   var baseUrl = "http://api.arbetsformedlingen.se/platsannons/matchning";
 
@@ -308,15 +302,25 @@ $("#submit-job").on("click", function () {
         kommun: kommunArr[20]
       }
     ]);
+  getWage(ssyk);
     donutResult.redraw();
     $("#progress-bar").fadeOut(2000);
-    $("#lon").fadeIn(2000);
-    $("#area-result").fadeIn(2000);
+
     $("#donut-result").fadeIn(3000);
     $("#lan").fadeIn(3000);
 
 
     donutResult.select(10); // Select skånes län
+
+    areaResult.redraw();
+    $("#lon").fadeIn(2000);
+    $("#area-result").fadeIn(2000);
+    donutResultKommun.select(0);
+    setTimeout(function () {
+      donutResultKommun.select(0);
+    }, 2100);
+
+
   });
 });
 
@@ -508,8 +512,9 @@ function getWage(ssyk) {
       });
       console.log(chartData);
 
+
+
       areaResult.setData(chartData);
-      areaResult.redraw();
 
     },
     fail: function (response) {
@@ -538,7 +543,7 @@ function getPrognos(yrkesomradeid) {
           "name": response[i].prognosrubrik
         });
       }
-      getWage(ssyk);
+
     }
   });
 }
