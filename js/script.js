@@ -454,6 +454,7 @@ function getWage(ssyk) {
         // Kontrollerar om data inte finns tillanglig
         if (wage === '..') {
           wage = 0;
+          console.log("lön är 0");
         }
 
         var currentObj = {
@@ -467,14 +468,14 @@ function getWage(ssyk) {
           var elem = {
             totwage: parseInt(currentObj.wage),
             counter: 1,
-            avgwage: currentObj.wage / 1
+            avgwage: parseInt(currentObj.wage) / 1
           };
           wageMap.set(currentObj.year, elem);
         } else {
           var elem = wageMap.get(currentObj.year);
-          elem.totwage = elem.totwage += parseInt(currentObj.wage);
+          elem.totwage = parseInt(elem.totwage) + parseInt(currentObj.wage);
           elem.counter++;
-          elem.avgwage = elem.totwage / elem.counter;
+          elem.avgwage = parseInt(elem.totwage) / parseInt(elem.counter);
           wageMap.set(currentObj.year, elem);
         }
       }
