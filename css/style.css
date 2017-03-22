@@ -55,7 +55,10 @@ svg {
     margin-left: auto;
     margin-right: auto;
     display: block;
-    width: 354px !important;
+
+}
+#donut-result{
+    min-width: 500px;
 }
 /*h4{
 font-size: 85px;
@@ -102,6 +105,7 @@ padding: 50px;
     position: absolute;
     top: 40%;
   }
+
   #index-banner .section {
     top: 10%;
   }

@@ -12,15 +12,26 @@ $("#kom").hide();
 
 var chartData = [];
 
-var areaResult = Morris.Area({
+var areaResult = Morris.Line({
   element: 'area-result',
-  data: [{
-    y: "placeholder",
-    b: 0
-  },],
+    resize: true,
+  data: [
+     { y: '2010', b: 1},
+     { y: '2011', b: 2},
+     { y: '2012', b: 3},
+     { y: '2013', b: 4},
+     { y: '2014', b: 5},
+     { y: '2015', b: 6},
+     { y: '2016', b: 7},
+     { y: '2017', b: 8},
+     { y: '2018', b: 9},
+     { y: '2019', b: 10},
+
+  ],
   xkey: 'y',
   ykeys: ['b'],
   labels: ['Lön'],
+
   lineColors: ['#0BA462']
 });
 
@@ -122,6 +133,14 @@ $("#submit-job").on("click", function () {
   $("#lon").hide();
   $("#lan").hide();
   $("#kom").hide();
+
+  var selectedMainGroup = $("#select-main").find(":selected").attr("data-yrkesomradeid");
+  console.log(selectedMainGroup);
+  populateSpecilzation(selectedMainGroup);
+  getPrognos(selectedMainGroup);
+  areaResult.setData(chartData);
+  areaResult.redraw();
+  
   var movieDiv = document.getElementById("div-job");
   var baseUrl = "http://api.arbetsformedlingen.se/platsannons/matchning";
 
@@ -488,15 +507,17 @@ function getWage(ssyk) {
         chartData.push({ y : key, b : Math.round(wage)});
       });
       console.log(chartData);
+
       areaResult.setData(chartData);
       areaResult.redraw();
+
     },
     fail: function (response) {
 
     }
   });
 
-  
+
 }
 
 function getPrognos(yrkesomradeid) {
