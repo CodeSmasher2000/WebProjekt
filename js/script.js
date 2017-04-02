@@ -15,6 +15,7 @@ var chartData = [];
 var areaResult = Morris.Line({
   element: 'area-result',
     resize: true,
+    redraw: true,
   data: [
      { y: '2010', b: 1},
      { y: '2011', b: 2},
@@ -38,6 +39,7 @@ var areaResult = Morris.Line({
 var donutResult = Morris.Donut({
   element: 'donut-result',
   resize: true,
+  redraw: true,
   data: [{
     label: "placeholder",
     value: 0
@@ -80,13 +82,13 @@ var donutResult = Morris.Donut({
     })(data);
 
     donutResultKommun.setData(donutData);
-    donutResultKommun.redraw();
     $("#kom").fadeIn(2000);
     $("#donut-result-kommun").fadeIn(2000);
+    donutResultKommun.redraw();
     donutResultKommun.select(0);
     setTimeout(function () {
-      donutResultKommun.select(0);
-    }, 2100);
+      donutResultKommun.redraw();
+  }, 2050);
 
     console.log(donutData);
   }
@@ -303,24 +305,17 @@ $("#submit-job").on("click", function () {
       }
     ]);
     getWage(ssyk);
-    donutResult.redraw();
     $("#progress-bar").fadeOut(2000);
 
     $("#donut-result").fadeIn(3000);
     $("#lan").fadeIn(3000);
-
 
     donutResult.select(10); // Select skånes län
 
     areaResult.redraw();
     $("#lon").fadeIn(2000);
     $("#area-result").fadeIn(2000);
-    areaResult.select(0);
-    setTimeout(function () {
-      areaResult.select(0);
-    }, 2100);
-
-
+    donutResult.redraw();
   });
 });
 
@@ -535,7 +530,7 @@ function getPrognos(yrkesomradeid) {
     },
     dataType: "json",
     success: function (response) {
-    
+
       console.log(response);
       // Hamtar ssyk for jobb
       for (var i = 0; i < response.length; i++) {
