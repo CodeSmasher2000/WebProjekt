@@ -348,6 +348,19 @@ function populateJobs() {
 }
 
 /**
+ * Retunerar ett index där år ligger i response från api call till SSB.
+ * @param {JSON} columns 
+ */
+function getYearIndexFromSSB(columns) {
+  for (var i = 0; i < columns.length; i++) {
+    if (columns[i].code === "Tid") {
+      return i;
+    }
+  }
+  console.log("ERROR");
+}
+
+/**
  * Hämtar specialiserade yrkesgrupper från arbetsförmedlingen.
  * @param {int} id
  *    En id som innehåller yrkesomradeid.
@@ -477,9 +490,10 @@ function getWage(ssyk) {
           wage = 0;
           console.log("lön är 0");
         }
-
+        var yearIndex = getYearIndexFromSSB(response.columns);
+        console.log("YearIndex: " + yearIndex);
         var currentObj = {
-          year: response.data[i].key[3],
+          year: response.data[i].key[yearIndex],
           //id: response.data[i].key[1],
           wage: wage
         };
@@ -542,4 +556,6 @@ function getPrognos(yrkesomradeid) {
 
     }
   });
+
+  
 }
